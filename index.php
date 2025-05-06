@@ -26,7 +26,7 @@
     </header>
     <div class="ligne"></div>
     <main>
-        <?php foreach ($products as $product): ?>
+        <?php foreach ($products as $product): ?> // Boucle foreach pour afficher chaque produit
             <div class="card">
                 <img src="<?php echo $product['image_url']; ?>" alt=" <?php echo $product['details']['name']; ?>">
                 <div class="description">
@@ -37,27 +37,31 @@
                 <div class="stock">
                     <p class="stock">
                         <?php $stock = $product['stock'];
-                        if ($stock > 65) {
+                        if ($stock > 65) { // Si le stock est supérieur à 65, afficher "En stock"
                             echo "En stock";
-                        } elseif ($stock > 0) {
+                        } elseif ($stock > 0) { // Sinon, si le stock est supérieur à 0, afficher "Stock faible"
                             echo "Stock faible";
-                        } else {
+                        } else { // Sinon, afficher "Rupture de stock"
                             echo "Rupture de stock";
-                        }
-                        ?>
+                        } ?>
                         <?php echo $product['stock']; ?>
                     </p>
                 </div>
                 <div class="achat">
                     <div class="prix">
                         <?php
-                        $prixHT = $product['pricing']['net_price'];
-                        $tva = $product['pricing']['tax_rate'];
-                        $prixTTC = $prixHT * (1 + $tva);
+                        $prixHT = $product['pricing']['net_price']; // Prix hors taxe
+                        $tva = $product['pricing']['tax_rate']; // Taux de TVA
+                        $prixTTC = $prixHT * (1 + $tva); // Prix TTC
+
+                        $quantity = $product['packaging']['quantity']; // Quantité
+                        $unit = $product['packaging']['unit']; // Unité
+                        $prixParUnite = $prixTTC / $quantity; // Prix par unité
                         ?>
                         <p class="prixttc">
-                            <?php echo number_format($prixTTC, 2, ',', ' ') . '€'; ?></p>
-                        <p class="prixUnite"> <?php echo $product['pricing']['tax_rate']; ?> </p>
+                            <?php echo number_format($prixTTC, 2, ',', ' ') . '€'; ?> </p> // Afficher le prix TTC
+                        <p class="prixUnite">
+                            <?php echo number_format($prixParUnite, 2, ',', ' ') . '€/' . $unit; ?> </p> // Afficher le prix par unité
                     </div>
                     <button>Acheter</button>
                 </div>
