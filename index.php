@@ -26,7 +26,7 @@
     </header>
     <div class="ligne"></div>
     <main>
-        <?php foreach ($products as $product): ?> // Boucle foreach pour afficher chaque produit
+        <?php foreach ($products as $product): // Boucle foreach pour afficher chaque produit ?>  
             <div class="card">
                 <img src="<?php echo $product['image_url']; ?>" alt=" <?php echo $product['details']['name']; ?>">
                 <div class="description">
@@ -59,9 +59,9 @@
                         $prixParUnite = $prixTTC / $quantity; // Prix par unité
                         ?>
                         <p class="prixttc">
-                            <?php echo number_format($prixTTC, 2, ',', ' ') . '€'; ?> </p> // Afficher le prix TTC
+                            <?php echo number_format($prixTTC, 2, ',', ' ') . '€'; // Afficher le prix TTC ?> </p> 
                         <p class="prixUnite">
-                            <?php echo number_format($prixParUnite, 2, ',', ' ') . '€/' . $unit; ?> </p> // Afficher le prix par unité
+                            <?php echo number_format($prixParUnite, 2, ',', ' ') . '€/' . $unit; // Afficher le prix par unité ?> </p> 
                     </div>
                     <button>Acheter</button>
                 </div>
